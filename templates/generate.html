@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+Generate
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='speed.css') }}">
+<style>
+    .subbtn:hover {
+        background-color: darkgrey;
+        color: white;
+    }
+
+    hr {
+        overflow: visible;
+        text-align: center;
+    }
+
+    hr:after {
+        background: #fff;
+        content: 'OR';
+        padding: 0 4px;
+        position: relative;
+        top: -13px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-6xl text-center font-bold text-gray-500 my-20">Generate <span class="text-yellow-500">Summary</span>
+</h1>
+<section class="text-gray-500 body-font" style="min-height: 50vh;">
+    <div class="container flex flex-wrap px-5 pb-8 mx-auto items-center">
+        <div class="md:w-1/2 md:pr-12 border-gray-200 border-r">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-8 mt-8 text-gray-500 text-center">Provide the
+                <span class="text-yellow-500">AudioBook</span>
+            </h1>
+            <form action="{{ url_for('summary') }}" method="POST" enctype="multipart/form-data">
+                <input placeholder="Paste URL Here" id="url" name="url"
+                    class="mb-8 w-full bg-white rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+
+                <hr class="text-gray-400 mb-8">
+
+                <div
+                    class="drop-zone bg-gray-100 h-40 w-auto mb-8 border-4 border-dashed border-gray-300 hover:border-gray-400">
+                    <span class="drop-zone__prompt text-gray-500 m-auto">Drop file here or click to upload</span>
+                    <input type="file" name="file" class="drop-zone__input" data-height="500">
+                </div>
+
+                <div class="text-center mb-8">
+                    <button type="submit"
+                        class="rounded-full bg-yellow-500 px-5 py-2 text-white font-medium">Submit</button>
+                    <a href={{ url_for('generate') }}><span class="rounded-full inline-flex bg-yellow-500 h-auto ml-2 px-5 py-2 text-white
+                    font-medium text-base">Reset</span></a>
+                </div>
+            </form>
+
+        </div>
+        <div class="flex flex-col md:w-1/2 md:pl-12 mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-yellow-500 text-center mt-8">Summary</span>
+                {% if name != "" %}
+                <div class="text-left">
+                    <p class="text-base font-medium text-gray-500 text-left mt-4 mb-6">
+                        {% if url is not none %}
+                        <span class="text-yellow-500 mb-4 ">URL:</span>
+                        <a href={{ url }} class="text-blue-500 underline" target="_blank">
+                            {{url}}
+                        </a> <br>
+                        {% endif %}
+                        <span class="text-yellow-500 mb-4">Name:</span> {{name}}<br>
+                        <span class="text-yellow-500">Summary:</span> {{summary}}
+                    </p>
+                </div>
+                <a href={{ url_for('explore') }}><button type="submit"
+                        class="rounded-full bg-yellow-500 px-5 py-2 text-white font-medium text-base">Check
+                        Summary</button></a>
+                {% endif %}
+        </div>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='speed.js') }}"></script>
+{% endblock %}

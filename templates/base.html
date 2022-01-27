@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} - Terse.ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+    {% block head %}
+        
+    {% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="flex flex-col justify-between">
+        <header class="text-gray-600 body-font border-b">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                <a href={{ url_for('index') }}
+                    class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 bg-yellow-500 rounded-full p-2 text-white"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span class="ml-3 text-2xl font-bold text-gray-600">Terse<span
+                            class="text-yellow-500">.ai</span></span>
+                </a>
+                <nav class="md:ml-auto flex flex-wrap items-center text-xl justify-center">
+                    <a href={{ url_for('explore') }} class="mr-10 hover:text-yellow-500"><strong>Explore</strong></a>
+                    <a href={{ url_for('generate') }} class="mr-5 hover:text-yellow-500"><strong>Generate</strong></a>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
