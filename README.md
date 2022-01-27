@@ -1,0 +1,1 @@
+# Terse.ai-Text-Summerization-Platform
