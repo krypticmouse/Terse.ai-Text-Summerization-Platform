@@ -1,1 +1,1 @@
-# Terse.ai-Text-Summerization-Platform
+# Terse.ai - A Text Summerization Platform
